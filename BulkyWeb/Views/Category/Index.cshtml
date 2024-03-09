@@ -1,0 +1,35 @@
+﻿@model List<Category>
+
+
+<h1> Category List</h1>
+<a   asp-action="Create">Add New Category</a>
+
+
+<table class=" table table-bordered table-striped">
+    <tr>
+        <th>
+            Category Name
+        </th>
+        <th>
+            Display Order
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    @foreach (Category c in Model.OrderByDescending(u => u.Name))
+    {
+      <tr> 
+            <td>@c.Name</td>
+            <td>@c.DisplayOrder</td>
+            <td>
+               <a asp-controller="Category" asp-action='edit' asp-route-id="@c.Id" class=" btn btn-primary m-4 "> Edit</a>
+               <a asp-route-id="@c.Id" asp-action="delete" class=" btn btn-danger "> Delete</a>
+            </td>
+      </tr>
+    }
+
+
+
+
+</table>
